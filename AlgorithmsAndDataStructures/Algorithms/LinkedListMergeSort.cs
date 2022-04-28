@@ -18,7 +18,7 @@ namespace AlgorithmsAndDataStructures.Algorithms
             var left = Sort(left_half);
             var right = Sort(right_half);
 
-            return Merge(left, right)
+            return Merge(left, right);
         }
 
         private (LinkedList, LinkedList) Split(LinkedList source)
@@ -43,7 +43,41 @@ namespace AlgorithmsAndDataStructures.Algorithms
         }
 
         private LinkedList Merge(LinkedList left, LinkedList right) {
-            throw new NotImplementedException();
+            var merged = new LinkedList(new Node(0));
+
+            var current = merged.Head;
+            var leftHead = left.Head;
+            var rightHead = right.Head;
+
+            while (leftHead != null || rightHead != null)
+            {
+                if (leftHead == null) {
+                    current.Next = rightHead;
+                    rightHead = rightHead.Next;
+                } else if (rightHead == null)
+                {
+                    current.Next = leftHead;
+                    leftHead = leftHead.Next;
+                } else if (leftHead.Data < rightHead.Data)
+                {
+                    current.Next = leftHead;
+                    leftHead = leftHead.Next;
+                } else {
+                    current.Next = rightHead;
+                    rightHead = rightHead.Next;
+                }
+
+                current = current.Next;
+            }
+
+            merged.Head = merged.Head.Next;
+
+            return merged;
+        }
+
+        private void AssignAndMoveNext(Node source, Node target) {
+            source.Next = target;
+            target = target.Next;
         }
 
     }

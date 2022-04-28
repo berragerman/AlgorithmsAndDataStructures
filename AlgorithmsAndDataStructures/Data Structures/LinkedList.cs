@@ -25,6 +25,11 @@ namespace AlgorithmsAndDataStructures.Data_Structures
     {
         public Node Head;
 
+        public LinkedList()
+        {
+
+        }
+
         public LinkedList(Node head)
         {
             this.Head = head;
@@ -41,7 +46,7 @@ namespace AlgorithmsAndDataStructures.Data_Structures
                 int size = 0;
                 Node current = this.Head;
 
-                while (current.Next != null) { 
+                while (current != null) { 
                     size++;
                     current = current.Next;
                 }
@@ -74,6 +79,8 @@ namespace AlgorithmsAndDataStructures.Data_Structures
                 {
                     sb.Append($" -> [Tail: {current.Data}]");
                 }
+
+                current = current.Next;
             }
 
             return sb.ToString();
